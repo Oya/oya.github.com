@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0052)http://charlo.gamemakersgarage.com/games/mazegen.php -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Maze</title>
+
+	<style type="text/css">
+	.mazeParameters {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px dotted black;
+	}
+	.mazeParameters input[type='text']{
+	width: 50px;	
+	}
+	.mazeParameters .infoRow {
+	text-align: center;
+	background-color: black;
+	color: white;
+	}
+#maze{
+	display: block; margin-top: 30px; margin-left:auto; margin-right:auto; position:relative;
+}
+	</style>
+</head>
+	
+<body screen_capture_injected="true">
+
+<div id="site">
+<div id="page">
+<div id="content">
+
+
+
+<table class="mazeParameters">
+<tbody><tr class="infoRow"><td colspan="2">Maze Parameters</td></tr>
+<tr><td>Columns: </td><td><input type="text" maxlength="4" id="columns" value="5"></td></tr>
+<tr><td>Rows: </td><td><input type="text" maxlength="4" id="rows" value="5"></td></tr>
+<tr><td>Gridsize (pixels): </td><td><input type="text" maxlength="2" id="gridsize" value="80"></td></tr>
+<tr><td>NPC's: </td><td><input type="text" maxlength="2" id="gridsize" value="0"></td></tr>
+
+
+<tr class="infoRow"><td colspan="2">Maze Style</td></tr>
+<tr><td colspan="2">
+Curvy: <input type="radio" name="mazeStyle" value="curvy">
+Normal: <input type="radio" name="mazeStyle" value="normal" checked="checked">
+Straight: <input type="radio" name="mazeStyle" value="straight">
+</td></tr>
+
+<tr class="infoRow"><td colspan="2">Colors</td></tr>
+<tr><td>Walls:</td><td>
+R <input type="text" maxlength="3" value="0" id="wallR">
+G <input type="text" maxlength="3" value="0" id="wallG">
+B <input type="text" maxlength="3" value="0" id="wallB">
+</td></tr>
+<tr><td>Background: </td><td>
+R <input type="text" maxlength="3" value="255" id="backgroundR">
+G <input type="text" maxlength="3" value="255" id="backgroundG">
+B <input type="text" maxlength="3" value="255" id="backgroundB">
+</td></tr>
+<tr><td>Solution: </td><td>
+R <input type="text" maxlength="3" value="255" id="solutionR">
+G <input type="text" maxlength="3" value="200" id="solutionG">
+B <input type="text" maxlength="3" value="200" id="solutionB">
+</td></tr>
+<tr class="infoRow"><td colspan="2">Generate</td></tr>
+<tr><td><input type="button" value="Generate" id="generate"></td>
+<td><input type="button" value="Solve" id="solve">
+<input type="button" value="Clear Solution" id="unsolve">
+<input type="button" value="View As PNG" id="save">
+<input type="button" value="HINT" id="hint">
+<input type="button" value="ZOOM" id="zoom">
+<input type="button" value="Save?" id="save">
+</td></tr>
+</tbody></table>
+
+
+	<canvas oncontextmenu="return false;" id="maze" width="75" height="75" style=""></canvas>
+
+
+</div>
+</div>
+<div id="footer">
+<div id="footerContent">
+</div>
+</div>
+</div>
+
+	<script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.mazegen.js"></script>
+</body>
+</html>
