@@ -23,6 +23,46 @@
 #maze{
 	display: block; margin-top: 30px; margin-left:auto; margin-right:auto; position:relative;
 }
+
+joystick {
+	display: block;
+	background: red;
+	border-style:solid;
+	border-width:2px;
+	border-color:black;
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	width: 50px;
+	height: 50px;
+	border-radius:50%;
+}
+joystickbackground {
+	display:block;
+	position: absolute;
+	left: 5px;
+	bottom: 5px;
+	background:#00A3FF;
+	border-style:solid;
+	border-width:2px;
+	border-color:black;
+	border-radius:50%;
+	width: 150px;
+	height: 150px;
+}
+joystickhitzone {
+	display:block;
+	position: absolute;
+	left: 48px;
+	top: 48px;
+	background:#004F7C;
+	border-style:solid;
+	border-width:2px;
+	border-color:black;
+	border-radius:50%;
+	width: 50px;
+	height: 50px;
+}
 	</style>
 </head>
 	
@@ -79,6 +119,11 @@ B <input type="text" maxlength="3" value="200" id="solutionB">
 
 	<canvas oncontextmenu="return false;" id="maze" width="75" height="75" style=""></canvas>
 
+<joystickbackground>
+	<joystickhitzone>
+		<joystick id="joystick"></joystick>
+	</joystickhitzone>
+</joystickbackground>
 
 </div>
 </div>
@@ -89,6 +134,7 @@ B <input type="text" maxlength="3" value="200" id="solutionB">
 </div>
 
 	<script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="./js/TouchControl.js"></script>
 	<script type="text/javascript" src="./js/jquery.mazegen.js"></script>
 </body>
 </html>

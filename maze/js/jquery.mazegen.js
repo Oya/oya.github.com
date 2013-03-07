@@ -1,13 +1,30 @@
 var canvas;
 var context;
 var theMaze = null;
+var score = 0;
+var joystick, keysPressed;
 
 $(document).ready(function() {
 	canvas = document.getElementById("maze");//$('#maze');
 	context = canvas.getContext('2d');	
 	context.font = "bold 20px sans-serif";
 	$(document).keydown(handleKeypress);
-	$(document).on('touchstart', handleTouch);
+
+
+	if (SQUARIFIC.framework && SQUARIFIC.framework.TouchControl) {
+		joystick = new SQUARIFIC.framework.TouchControl(document.getElementById("joystick"), {
+			pretendArrowKeys: true,
+			mindistance: 75,
+			maxdistance: 75,
+			middleLeft: 25,
+			middleTop: 25
+		});
+		//joystick.on("joystickMove", handleTouch);
+		joystick.on("pretendKeydown", handleKeyDown);
+		joystick.on("pretendKeyup", handleKeyUp);
+	} else {
+		console.log("Framework or TouchControl not available");
+	}
 });
 
 $('#generate').on('click', function() {
@@ -128,18 +145,111 @@ function handleClick(mouseX, mouseY, mouseButton) {
 	}
 	return theMaze.grid[gridX][gridY];
 }
-function handleTouch(event) {
+
+var running = false;
+function handleKeyDown(event) {
+	//console.log("Down " + event.keyCode);
+
+if(running == false && theMaze !=null)
+{
+	running = true;
+
 	var currentPlayerGrid = theMaze.grid[theMaze.playerX][theMaze.playerY];
 	var isMoving = false;
 	var changeX = 0;
 	var changeY = 0;
 
-    e.preventDefault();
-    canX = event.targetTouches[0].pageX;// - canvas.offsetLeft;
-    canY = event.targetTouches[0].pageY;// - canvas.offsetTop;
-
-    alert("X:"+canX+" Y:"+canY);
+	switch(event.keyCode) {
+		case 37: {
+			//left key
+			if (currentPlayerGrid.leftWall == false) {
+				changeX = -1;
+				isMoving = true;
+			}
+			break;
+		}
+		case 38: {
+			//up key
+			if (currentPlayerGrid.topWall == false) {
+				changeY = -1;	
+				isMoving = true;
+			}
+			break;
+		}
+		case 39: {
+			//right key
+			if (currentPlayerGrid.rightWall == false) {
+				changeX = 1;
+				isMoving = true;
+			}
+			break;
+		}
+		case 40: {
+			//down key
+			if (currentPlayerGrid.bottomWall == false) {
+				changeY = 1;
+				isMoving = true
+			}
+			break;
+		}
+		default: {
+			//not a key we care about
+			break;
+		}
+	}
+	if (isMoving == true) {
+		var theLandingCell = theMaze.grid[theMaze.playerX + changeX][theMaze.playerY + changeY];
+		if(theLandingCell.havePill == true)
+		{
+			theLandingCell.havePill = false;
+			theMaze.pillCollected++;
+			score++;
+			console.log("pills: " + theMaze.pillCollected);
+		}
+		
+		theMaze.redrawCell(theMaze.grid[theMaze.playerX][theMaze.playerY]);
+		theMaze.playerX += changeX;
+		theMaze.playerY += changeY;
+		theMaze.drawPlayer();
+		
+		// The End
+		if(theLandingCell.isEnd == true)
+		{
+			if(confirm("Next?"))
+			{
+				
+				var col = parseInt($('#columns').val())+1;
+				$('#columns').val(col);
+				$('#rows').val(parseInt($('#rows').val())+1);
+				
+				var gridsize = parseInt(400/col);
+				if(gridsize < 12)
+					gridsize = 12;
+					
+				$('#gridsize').val(gridsize);
+				
+				makeMaze();
+			}
+		}
+	}
+	setTimeout(function(){run()},500);
 }
+
+};
+function run(){
+	console.log("run!");
+	running=false;
+}
+
+function handleKeyUp(event) {
+	//console.log("Up " + keysPressed);
+    
+
+
+
+};
+
+
 function handleKeypress(event) {
 	var currentPlayerGrid = theMaze.grid[theMaze.playerX][theMaze.playerY];
 	var isMoving = false;
@@ -192,6 +302,7 @@ function handleKeypress(event) {
 		{
 			theLandingCell.havePill = false;
 			theMaze.pillCollected++;
+			score++;
 			console.log("pills: " + theMaze.pillCollected);
 		}
 		
