@@ -19,9 +19,6 @@ $('#next').on('click', function() {
 		gridsize = 12;
 		
 	$('#gridsize').val(gridsize);
-
-	$('#maze').css({ 'margin-top': '0px' });
-	$('#maze').css({ 'margin-left': '0px' });
 	
 	makeMaze();
 
@@ -69,6 +66,12 @@ function makeMaze() {
 	var columns = $('#columns').val();
 	var gridsize = $('#gridsize').val();
 	var mazeStyle = $('input[name=mazeStyle]:checked').val();
+
+	var marginLeft = 160-(columns*gridsize/2);
+	var marginTop = 160-(rows*gridsize/2);
+	$('#maze').css({ 'margin-top': marginTop + 'px' });
+	$('#maze').css({ 'margin-left': marginLeft +'px' });
+
 	/*
 	var startColumn = $('#startX').val();
 	var startRow = $('#startY').val();
@@ -145,7 +148,6 @@ function handleClick(mouseX, mouseY, mouseButton) {
 */
 var running = false;
 function handleKeyDown(event) {
-	//console.log("Down " + event.keyCode);
 
 if(running == false && theMaze !=null)
 {
@@ -201,7 +203,8 @@ if(running == false && theMaze !=null)
 			theLandingCell.havePill = false;
 			theMaze.pillCollected++;
 			score++;
-			console.log("pills: " + theMaze.pillCollected);
+
+			$('score').text(score);
 		}
 		
 
@@ -236,10 +239,6 @@ function run(){
 }
 
 function handleKeyUp(event) {
-	//console.log("Up " + keysPressed);
-    
-
-
 
 };
 
@@ -297,7 +296,6 @@ function handleKeypress(event) {
 			theLandingCell.havePill = false;
 			theMaze.pillCollected++;
 			score++;
-			console.log("pills: " + theMaze.pillCollected);
 			$('score').text(score);
 		}
 		
