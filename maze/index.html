@@ -23,8 +23,17 @@
 	background-color: black;
 	color: white;
 	}
+
+
 #maze{
-	display: block; margin-top: 30px; margin-left:auto; margin-right:auto; position:relative;
+	display: block; position:relative;
+}
+
+#mazeFrame{
+	overflow:hidden;
+	width: 320px;
+	height: 320px;
+	border: 1px solid red;
 }
 
 joystick {
@@ -42,7 +51,7 @@ joystick {
 }
 joystickbackground {
 	display:block;
-	position: absolute;
+	position: fixed;
 	left: 20px;
 	bottom: 10px;
 	background:#00A3FF;
@@ -69,7 +78,7 @@ joystickhitzone {
 	</style>
 </head>
 	
-<body screen_capture_injected="true">
+<body>
 
 <joystickbackground>
 	<joystickhitzone>
@@ -81,7 +90,11 @@ joystickhitzone {
 <div id="page">
 <div id="content">
 
-<canvas oncontextmenu="return false;" id="maze" width="75" height="75" style=""></canvas>
+
+<div id="mazeFrame">
+	<canvas oncontextmenu="return false;" id="maze" width="75" height="75" style=""></canvas>
+</div>
+
 
 <table class="mazeParameters">
 <tbody><tr class="infoRow"><td colspan="2">Maze Parameters</td></tr>

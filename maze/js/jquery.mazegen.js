@@ -191,6 +191,17 @@ if(running == false && theMaze !=null)
 		theMaze.playerY += changeY;
 		theMaze.drawPlayer();
 		
+		// Move the maze
+		if(changeX != 0){
+			var marginLeft = (theMaze.gridsize * changeX * -1) + parseInt($('#maze').css("marginLeft").replace('px', ''));
+			$('#maze').animate({ 'margin-left': marginLeft + 'px' }, 100);
+		}
+		if(changeY != 0){
+			var marginTop = (theMaze.gridsize * changeY * -1) + parseInt($('#maze').css("marginTop").replace('px', ''));
+			$('#maze').animate({ 'margin-top': marginTop + 'px' }, 100);
+		}
+
+
 		// The End
 		if(theLandingCell.isEnd == true)
 		{
@@ -216,7 +227,6 @@ if(running == false && theMaze !=null)
 
 };
 function run(){
-	console.log("run!");
 	running=false;
 }
 
