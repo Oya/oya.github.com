@@ -9,6 +9,24 @@ var joystick, keysPressed;
 $('#generate').on('click', function() {
 	makeMaze();
 });
+$('#next').on('click', function() {
+	var col = parseInt($('#columns').val())+1;
+	$('#columns').val(col);
+	$('#rows').val(parseInt($('#rows').val())+1);
+	
+	var gridsize = parseInt(320/col);
+	if(gridsize < 12)
+		gridsize = 12;
+		
+	$('#gridsize').val(gridsize);
+
+	$('#maze').css({ 'margin-top': '0px' });
+	$('#maze').css({ 'margin-left': '0px' });
+	
+	makeMaze();
+
+	$('#next').hide();
+});
 $('#zoom').on('click', function() {
 	$('#gridsize').val(parseInt($('#gridsize').val())+10);
 	if (theMaze !== null)
@@ -186,11 +204,7 @@ if(running == false && theMaze !=null)
 			console.log("pills: " + theMaze.pillCollected);
 		}
 		
-		theMaze.redrawCell(theMaze.grid[theMaze.playerX][theMaze.playerY]);
-		theMaze.playerX += changeX;
-		theMaze.playerY += changeY;
-		theMaze.drawPlayer();
-		
+
 		// Move the maze
 		if(changeX != 0){
 			var marginLeft = (theMaze.gridsize * changeX * -1) + parseInt($('#maze').css("marginLeft").replace('px', ''));
@@ -202,24 +216,15 @@ if(running == false && theMaze !=null)
 		}
 
 
+		theMaze.redrawCell(theMaze.grid[theMaze.playerX][theMaze.playerY]);
+		theMaze.playerX += changeX;
+		theMaze.playerY += changeY;
+		theMaze.drawPlayer();
+
 		// The End
 		if(theLandingCell.isEnd == true)
 		{
-			if(confirm("Next?"))
-			{
-				
-				var col = parseInt($('#columns').val())+1;
-				$('#columns').val(col);
-				$('#rows').val(parseInt($('#rows').val())+1);
-				
-				var gridsize = parseInt(320/col);
-				if(gridsize < 12)
-					gridsize = 12;
-					
-				$('#gridsize').val(gridsize);
-				
-				makeMaze();
-			}
+			$('#next').show();
 		}
 	}
 	setTimeout(function(){run()},500);
@@ -293,31 +298,30 @@ function handleKeypress(event) {
 			theMaze.pillCollected++;
 			score++;
 			console.log("pills: " + theMaze.pillCollected);
+			$('score').text(score);
 		}
 		
+
+		// Move the maze
+		if(changeX != 0){
+			var marginLeft = (theMaze.gridsize * changeX * -1) + parseInt($('#maze').css("marginLeft").replace('px', ''));
+			$('#maze').animate({ 'margin-left': marginLeft + 'px' }, 100);
+		}
+		if(changeY != 0){
+			var marginTop = (theMaze.gridsize * changeY * -1) + parseInt($('#maze').css("marginTop").replace('px', ''));
+			$('#maze').animate({ 'margin-top': marginTop + 'px' }, 100);
+		}
+
+
 		theMaze.redrawCell(theMaze.grid[theMaze.playerX][theMaze.playerY]);
 		theMaze.playerX += changeX;
 		theMaze.playerY += changeY;
 		theMaze.drawPlayer();
-		
+
 		// The End
 		if(theLandingCell.isEnd == true)
 		{
-			if(confirm("Next?"))
-			{
-				
-				var col = parseInt($('#columns').val())+1;
-				$('#columns').val(col);
-				$('#rows').val(parseInt($('#rows').val())+1);
-				
-				var gridsize = parseInt(400/col);
-				if(gridsize < 12)
-					gridsize = 12;
-					
-				$('#gridsize').val(gridsize);
-				
-				makeMaze();
-			}
+			$('#next').show();
 		}
 	}
 }
