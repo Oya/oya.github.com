@@ -936,10 +936,10 @@ $(document).ready(function() {
 	if (SQUARIFIC.framework && SQUARIFIC.framework.TouchControl) {
 		joystick = new SQUARIFIC.framework.TouchControl(document.getElementById("joystick"), {
 			pretendArrowKeys: true,
-			mindistance: 75,
-			maxdistance: 75,
-			middleLeft: 25,
-			middleTop: 25
+			mindistance: 50,
+			maxdistance: 50,
+			middleLeft: 15,
+			middleTop: 15
 		});
 		//joystick.on("joystickMove", handleTouch);
 		joystick.on("pretendKeydown", handleKeyDown);
