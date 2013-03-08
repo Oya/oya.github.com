@@ -120,7 +120,7 @@ function hintsSolveMaze() {
 }
 
 
-
+/*
 function handleClick(mouseX, mouseY, mouseButton) {
 	var gridX = Math.floor(mouseX/theMaze.gridsize);
 	var gridY = Math.floor(mouseY/theMaze.gridsize);
@@ -145,7 +145,7 @@ function handleClick(mouseX, mouseY, mouseButton) {
 	}
 	return theMaze.grid[gridX][gridY];
 }
-
+*/
 var running = false;
 function handleKeyDown(event) {
 	//console.log("Down " + event.keyCode);
