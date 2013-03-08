@@ -4,28 +4,7 @@ var theMaze = null;
 var score = 0;
 var joystick, keysPressed;
 
-$(document).ready(function() {
-	canvas = document.getElementById("maze");//$('#maze');
-	context = canvas.getContext('2d');	
-	context.font = "bold 20px sans-serif";
-	$(document).keydown(handleKeypress);
 
-
-	if (SQUARIFIC.framework && SQUARIFIC.framework.TouchControl) {
-		joystick = new SQUARIFIC.framework.TouchControl(document.getElementById("joystick"), {
-			pretendArrowKeys: true,
-			mindistance: 75,
-			maxdistance: 75,
-			middleLeft: 25,
-			middleTop: 25
-		});
-		//joystick.on("joystickMove", handleTouch);
-		joystick.on("pretendKeydown", handleKeyDown);
-		joystick.on("pretendKeyup", handleKeyUp);
-	} else {
-		console.log("Framework or TouchControl not available");
-	}
-});
 
 $('#generate').on('click', function() {
 	makeMaze();
@@ -222,7 +201,7 @@ if(running == false && theMaze !=null)
 				$('#columns').val(col);
 				$('#rows').val(parseInt($('#rows').val())+1);
 				
-				var gridsize = parseInt(400/col);
+				var gridsize = parseInt(320/col);
 				if(gridsize < 12)
 					gridsize = 12;
 					
@@ -940,3 +919,34 @@ function cell(column, row, partOfMaze, isStart, isEnd, isGenStart) {
 	this.isPlayer = false;
 	this.havePill = true;
 }
+
+
+
+
+
+
+
+$(document).ready(function() {
+	canvas = document.getElementById("maze");//$('#maze');
+	context = canvas.getContext('2d');	
+	context.font = "bold 20px sans-serif";
+	$(document).keydown(handleKeypress);
+
+
+	if (SQUARIFIC.framework && SQUARIFIC.framework.TouchControl) {
+		joystick = new SQUARIFIC.framework.TouchControl(document.getElementById("joystick"), {
+			pretendArrowKeys: true,
+			mindistance: 75,
+			maxdistance: 75,
+			middleLeft: 25,
+			middleTop: 25
+		});
+		//joystick.on("joystickMove", handleTouch);
+		joystick.on("pretendKeydown", handleKeyDown);
+		joystick.on("pretendKeyup", handleKeyUp);
+	} else {
+		console.log("Framework or TouchControl not available");
+	}
+
+	makeMaze();
+});
