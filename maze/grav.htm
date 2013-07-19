@@ -7,9 +7,9 @@
                 $(window).bind("devicemotion", function(e){
                     var movitBaby = e.originalEvent,
                         acelera = movitBaby.accelerationIncludingGravity,
-                        x = acelera.x,
-                        y = acelera.y,
-                        z = acelera.z;
+                        x = Math.round(acelera.x),
+                        y = Math.round(acelera.y),
+                        z = Math.round(acelera.z);
  
                     $("body").html(
                         "x = <b>" + x + "</b><br/>" +
