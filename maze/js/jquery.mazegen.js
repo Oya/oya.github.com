@@ -327,6 +327,10 @@ function handleKeypress(event) {
 
 var x0, y0;
 function handleRotation(e) {
+if(running == false && theMaze !=null)
+{
+	running = true;
+
     var movitBaby = e.originalEvent,
 	    acelera = movitBaby.accelerationIncludingGravity,
 	    x = Math.round(acelera.x),
@@ -407,11 +411,11 @@ function handleRotation(e) {
 		// Move the maze
 		if(changeX != 0){
 			var marginLeft = (theMaze.gridsize * changeX * -1) + parseInt($('#maze').css("marginLeft").replace('px', ''));
-			$('#maze').animate({ 'margin-left': marginLeft + 'px' }, 1500);
+			$('#maze').animate({ 'margin-left': marginLeft + 'px' }, 100);
 		}
 		if(changeY != 0){
 			var marginTop = (theMaze.gridsize * changeY * -1) + parseInt($('#maze').css("marginTop").replace('px', ''));
-			$('#maze').animate({ 'margin-top': marginTop + 'px' }, 1500);
+			$('#maze').animate({ 'margin-top': marginTop + 'px' }, 100);
 		}
 
 
@@ -426,6 +430,8 @@ function handleRotation(e) {
 			$('#next').show();
 		}
 	}
+	setTimeout(function(){run()},1500);
+}
 }
 
 function maze(rows, columns, gridsize, mazeStyle, startColumn, startRow, endColumn, endRow, wallColor, backgroundColor, solutionColor) {
