@@ -407,11 +407,11 @@ function handleRotation(e) {
 		// Move the maze
 		if(changeX != 0){
 			var marginLeft = (theMaze.gridsize * changeX * -1) + parseInt($('#maze').css("marginLeft").replace('px', ''));
-			$('#maze').animate({ 'margin-left': marginLeft + 'px' }, 500);
+			$('#maze').animate({ 'margin-left': marginLeft + 'px' }, 1500);
 		}
 		if(changeY != 0){
 			var marginTop = (theMaze.gridsize * changeY * -1) + parseInt($('#maze').css("marginTop").replace('px', ''));
-			$('#maze').animate({ 'margin-top': marginTop + 'px' }, 500);
+			$('#maze').animate({ 'margin-top': marginTop + 'px' }, 1500);
 		}
 
 
