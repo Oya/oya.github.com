@@ -430,7 +430,7 @@ function handleRotation(e) {
 				$('#next').show();
 			}
 		}
-		setTimeout(function(){run();},1500);
+		setTimeout(function(){run();},500);
 	}
 }
 
