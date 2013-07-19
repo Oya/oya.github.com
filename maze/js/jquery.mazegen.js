@@ -230,7 +230,7 @@ if(running == false && theMaze !=null)
 			$('#next').show();
 		}
 	}
-	setTimeout(function(){run()},500);
+	setTimeout(function(){run()},1500);
 }
 
 };
@@ -430,7 +430,7 @@ if(running == false && theMaze !=null)
 			$('#next').show();
 		}
 	}
-	setTimeout(function(){run()},1500);
+	setTimeout(function(){run()},3000);
 }
 }
 
