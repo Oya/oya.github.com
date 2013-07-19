@@ -333,18 +333,17 @@ function handleRotation(e) {
 	    y = Math.round(acelera.y),
 	    z = Math.round(acelera.z);
 	var direcao;
-	if(x > x0)
+	if(x > 0 && x!=x0)
 	{
 		direcao = 39; // right
-	}else if(x < x0)
+	}else if(x < 0 && x!=x0)
 	{
 		direcao = 37; // left
 	}
-	x0 = x;
-	if(y > x0)
+	if(y > 0 && y!=y0)
 	{
 		direcao = 38; // up
-	}else if(y < x0)
+	}else if(y < 0 && y!=y0)
 	{
 		direcao = 40; // down
 	}
