@@ -961,4 +961,15 @@ $(document).ready(function() {
 	}
 
 	makeMaze();
+
+	$(window).bind("devicemotion", function(e){
+        var movitBaby = e.originalEvent,
+            acelera = movitBaby.accelerationIncludingGravity,
+            x = acelera.x,
+            y = acelera.y,
+            z = acelera.z;
+
+            
+    });
+
 });
