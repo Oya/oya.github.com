@@ -327,111 +327,111 @@ function handleKeypress(event) {
 
 var x0, y0;
 function handleRotation(e) {
-if(running == false && theMaze !=null)
-{
-	running = true;
+	if(running == false && theMaze !=null)
+	{
+		running = true;
 
-    var movitBaby = e.originalEvent,
-	    acelera = movitBaby.accelerationIncludingGravity,
-	    x = Math.round(acelera.x),
-	    y = Math.round(acelera.y),
-	    z = Math.round(acelera.z);
-	var direcao;
-	if(x > 0 && x!=x0)
-	{
-		direcao = 39; // right
-	}else if(x < 0 && x!=x0)
-	{
-		direcao = 37; // left
-	}
-	if(y > 0 && y!=y0)
-	{
-		direcao = 38; // up
-	}else if(y < 0 && y!=y0)
-	{
-		direcao = 40; // down
-	}
-	x0 = x;
-	y0 = y;
-
-	var currentPlayerGrid = theMaze.grid[theMaze.playerX][theMaze.playerY];
-	var isMoving = false;
-	var changeX = 0;
-	var changeY = 0;
-
-	switch(direcao) {
-		case 37: {
-			//left key
-			if (currentPlayerGrid.leftWall == false) {
-				changeX = -1;
-				isMoving = true;
-			}
-			break;
-		}
-		case 38: {
-			//up key
-			if (currentPlayerGrid.topWall == false) {
-				changeY = -1;	
-				isMoving = true;
-			}
-			break;
-		}
-		case 39: {
-			//right key
-			if (currentPlayerGrid.rightWall == false) {
-				changeX = 1;
-				isMoving = true;
-			}
-			break;
-		}
-		case 40: {
-			//down key
-			if (currentPlayerGrid.bottomWall == false) {
-				changeY = 1;
-				isMoving = true
-			}
-			break;
-		}
-		default: {
-			//not a key we care about
-			break;
-		}
-	}
-	if (isMoving == true) {
-		var theLandingCell = theMaze.grid[theMaze.playerX + changeX][theMaze.playerY + changeY];
-		if(theLandingCell.havePill == true)
+	    var movitBaby = e.originalEvent,
+		    acelera = movitBaby.accelerationIncludingGravity,
+		    x = Math.round(acelera.x),
+		    y = Math.round(acelera.y),
+		    z = Math.round(acelera.z);
+		var direcao;
+		if(x > 0 && x!=x0)
 		{
-			theLandingCell.havePill = false;
-			theMaze.pillCollected++;
-			score++;
-			$('score').text(score);
-		}
-		
-
-		// Move the maze
-		if(changeX != 0){
-			var marginLeft = (theMaze.gridsize * changeX * -1) + parseInt($('#maze').css("marginLeft").replace('px', ''));
-			$('#maze').animate({ 'margin-left': marginLeft + 'px' }, 100);
-		}
-		if(changeY != 0){
-			var marginTop = (theMaze.gridsize * changeY * -1) + parseInt($('#maze').css("marginTop").replace('px', ''));
-			$('#maze').animate({ 'margin-top': marginTop + 'px' }, 100);
-		}
-
-
-		theMaze.redrawCell(theMaze.grid[theMaze.playerX][theMaze.playerY]);
-		theMaze.playerX += changeX;
-		theMaze.playerY += changeY;
-		theMaze.drawPlayer();
-
-		// The End
-		if(theLandingCell.isEnd == true)
+			direcao = 39; // right
+		}else if(x < 0 && x!=x0)
 		{
-			$('#next').show();
+			direcao = 37; // left
 		}
+		if(y > 0 && y!=y0)
+		{
+			direcao = 38; // up
+		}else if(y < 0 && y!=y0)
+		{
+			direcao = 40; // down
+		}
+		x0 = x;
+		y0 = y;
+
+		var currentPlayerGrid = theMaze.grid[theMaze.playerX][theMaze.playerY];
+		var isMoving = false;
+		var changeX = 0;
+		var changeY = 0;
+
+		switch(direcao) {
+			case 37: {
+				//left key
+				if (currentPlayerGrid.leftWall == false) {
+					changeX = -1;
+					isMoving = true;
+				}
+				break;
+			}
+			case 38: {
+				//up key
+				if (currentPlayerGrid.topWall == false) {
+					changeY = -1;	
+					isMoving = true;
+				}
+				break;
+			}
+			case 39: {
+				//right key
+				if (currentPlayerGrid.rightWall == false) {
+					changeX = 1;
+					isMoving = true;
+				}
+				break;
+			}
+			case 40: {
+				//down key
+				if (currentPlayerGrid.bottomWall == false) {
+					changeY = 1;
+					isMoving = true
+				}
+				break;
+			}
+			default: {
+				//not a key we care about
+				break;
+			}
+		}
+		if (isMoving == true) {
+			var theLandingCell = theMaze.grid[theMaze.playerX + changeX][theMaze.playerY + changeY];
+			if(theLandingCell.havePill == true)
+			{
+				theLandingCell.havePill = false;
+				theMaze.pillCollected++;
+				score++;
+				$('score').text(score);
+			}
+			
+
+			// Move the maze
+			if(changeX != 0){
+				var marginLeft = (theMaze.gridsize * changeX * -1) + parseInt($('#maze').css("marginLeft").replace('px', ''));
+				$('#maze').animate({ 'margin-left': marginLeft + 'px' }, 100);
+			}
+			if(changeY != 0){
+				var marginTop = (theMaze.gridsize * changeY * -1) + parseInt($('#maze').css("marginTop").replace('px', ''));
+				$('#maze').animate({ 'margin-top': marginTop + 'px' }, 100);
+			}
+
+
+			theMaze.redrawCell(theMaze.grid[theMaze.playerX][theMaze.playerY]);
+			theMaze.playerX += changeX;
+			theMaze.playerY += changeY;
+			theMaze.drawPlayer();
+
+			// The End
+			if(theLandingCell.isEnd == true)
+			{
+				$('#next').show();
+			}
+		}
+		setTimeout(function(){run();},1500);
 	}
-	setTimeout(function(){run()},3000);
-}
 }
 
 function maze(rows, columns, gridsize, mazeStyle, startColumn, startRow, endColumn, endRow, wallColor, backgroundColor, solutionColor) {
