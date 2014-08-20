@@ -1,29 +1,29 @@
 
-<!-- saved from url=(0030)http://sysach.com/circle-game/ -->
-<html><script type="text/javascript" async="" src="./balls_files/ga.js"></script><script id="tinyhippos-injected">if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="etc.js"></script>
-<script src="circle-game.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-    if(isCanvasSupported())
-      cg.init()
-    else
-      $(document.body).html("<style type='text/css'>p {text-align: center} body {padding: 10px}</style><p>You browser does not support HTML5, which is required to run this game.</p><p>I recommend Google Chrome <br /><a href='http://www.google.com/chrome'><img src='http://www.onlinecomputerfixes.com/wp-content/uploads/2010/10/google-chrome-logo.jpg' /></a></p>")
-  })
-</script>
-<style type="text/css">
-body {
-  margin: 0;
-  padding: 0;
-}
-canvas {
-  background-color: black;
-}
-</style>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="etc.js"></script>
+	<script src="circle-game.js"></script>
+	<script type="text/javascript">
+	  $(document).ready(function() {
+	    if(isCanvasSupported())
+	      cg.init()
+	    else
+	      $(document.body).html("<style type='text/css'>p {text-align: center} body {padding: 10px}</style><p>You browser does not support HTML5, which is required to run this game.</p><p>I recommend Google Chrome <br /><a href='http://www.google.com/chrome'><img src='http://www.onlinecomputerfixes.com/wp-content/uploads/2010/10/google-chrome-logo.jpg' /></a></p>")
+	  })
+	</script>
+	<style type="text/css">
+	body {
+	  margin: 0;
+	  padding: 0;
+	}
+	canvas {
+	  background-color: black;
+	}
+	</style>
 </head>
-<body data-pinterest-extension-installed="cr1.3.4">
-<canvas width="1199" height="635" style="cursor: default;"></canvas>
-
-
-<div id="window-resizer-tooltip" style="display: none;"><a href="http://sysach.com/circle-game/#" title="Edit settings" style="background-image: url(chrome-extension://kkelicaakdanhinjdeammmilcgefonfh/images/icon_19.png);"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1199</span> x <span class="tooltipHeight" id="winHeight">774</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1199</span> x <span class="tooltipHeight" id="vpHeight">635</span></div><span style="height: 20px; width: 40px; min-height: 20px; min-width: 40px; position: absolute; opacity: 0.85; z-index: 8675309; display: none; cursor: pointer; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAADU0lEQVR42s2WXUhTYRjHz0VEVPRFUGmtVEaFUZFhHxBhsotCU5JwBWEf1EWEEVHQx4UfFWYkFa2biPJiXbUta33OXFtuUXMzJ4bK3Nqay7m5NeZq6h/tPQ+xU20zugjOxR/+7/O8539+5znnwMtNTExwJtMb3L/fiLv3botCSmUjeCaejTOb39AiFothfHxcFIrHY8RksZjBsckJcOIRMfFsHD/SsbExUYpnI8DR0dGUGjSb0byhEJp5Uqg5CTSzc2CQleJbMEj9/ywBcGRkJEk9DQqouEVQT1sK444yWI9UonmTjGqauVLEIlHa9x8lAMbj8SSpp0rwKGMVvg8P46vbg0C7na8z8JsMcgHe7jlEa+edRhiLy8n/TUMfu6EvLElk+U0WtGwrTrdfAGQf5J8iiK4LVzDU28t8JtMSocf8E+l68myaNFXm/6rXslLK7ay5TOunuRvZWpJuvwAYjUaTpOIWoquuAZ219RTaxKYp9BbjycoN5FvL9qH9TBX5rvoGdJythvXYSTxdtRnWylO/ZdqrLsGwszzhWQ593z2KlAwCYCQSSZJ6ehZ0W7bD9VBLgN0NCqr3qR7R2rBrL3pu3Sb/7nDlz2uy6cG0OXk0GTbZXzNp8trsPAQdTj6frlWzN2DcXZGKQQAMh8NJ6rpyHe+PnkCr/CAFdZyvpfpjuvkifLF9wIt1Wwlo0OHie1RvWrKa93RjzfzliTzPKz3ltB0/Tevmwp14wGUgHAzSOoUEwFAolFaaBSuhnslPRkJexUJtZ6v5HtUeLswl33n1BgEY5fvhs9sJ3FAiT+QYyyvoAQJuD0KBAFRTJNAuz5/s3gJgMBhMJwrVFRThM5tY5zUF/A4X1f2fvQTRLCuBreoim0YmAbqNJryvPEXeeq46kaNdkQ/1HCncbJKPs9ZSv2VHGfWsZ2hfkhKAfr8/pdxWKx4wwD69PmVfNSOL+lr2w+gYqHpWDtXt1xQ8AMlWU0e1lqLd/APRHoP8AJqWrQG9gYxcPMsvSJUvAA4MDKTUJ7MZLaVy8v+qT21tcDx/OemePr0RTkNrur4A6PP5xCgBsL+/X4wiQDpuuVxOeL1eMYmYeDY6sOp0z+B0OuHxeEQhxkJMFosJiSO/UinOI/8Pc+l7KKArAT8AAAAASUVORK5CYII=);"></span></body></html>
+<body>
+	<canvas width="1199" height="635" style="cursor: default;"></canvas>
+</body>
+</html>

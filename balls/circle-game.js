@@ -148,7 +148,7 @@ var cg = {
 
      $(this.canvas).click(function(e) {
        if(cg.inZBounds(e.clientX,e.clientY)) {
-         window.open('http://sysach.com','_blank')
+         //window.open('http://sysach.com','_blank')
        } else {
          $(cg.canvas).unbind('click')
          cg.start()
@@ -202,20 +202,20 @@ var cg = {
 
    },
    touchMove: function(e) {
-    // TODO deslocar a bola um pouco pra cima
      e.preventDefault()
      var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]
-     //cg.mouseMove(touch)
-     if(!cg.paused) {
-       cg.player.x = e.clientX
-       cg.player.y = e.clientY - (cg.player.radius *2)
-     }
+     cg.mouseMove(touch)
    },
    mouseMove: function(e) {
-     if(!cg.paused) {
-       cg.player.x = e.clientX
-       cg.player.y = e.clientY
-     }
+      if(!cg.paused) {
+        cg.player.x = e.clientX
+        if(cg.config.touchmove){
+          cg.player.y = e.clientY - (cg.player.radius *2)
+        }
+        else{
+          cg.player.y = e.clientY
+        }
+      }
    },
    dispText: function() {
      this.ctx.font = '40pt Verdana'
@@ -230,12 +230,12 @@ var cg = {
      w = this.ctx.measureText(t = '(click to begin)').width
      this.ctx.fillText(t, (this.config.width - w)/2, cg.config.height / 2)
 
-     w = this.ctx.measureText(t = 'created by').width
-     this.ctx.fillText(t, (this.config.width - w)/2, cg.config.height / 2 + 180)
+     // w = this.ctx.measureText(t = 'created by').width
+     // this.ctx.fillText(t, (this.config.width - w)/2, cg.config.height / 2 + 180)
 
-     this.zHeight = 81
-     this.zWidth = 296
-     this.ctx.drawImage(this.z, this.zLogoX = (cg.config.width - this.zWidth) / 2, this.zLogoY = cg.config.height / 2 + 200) //296x81
+     // this.zHeight = 81
+     // this.zWidth = 296
+     // this.ctx.drawImage(this.z, this.zLogoX = (cg.config.width - this.zWidth) / 2, this.zLogoY = cg.config.height / 2 + 200) //296x81
    }
  }
  var Circle = function(inCenter) {
