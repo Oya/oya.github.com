@@ -55,8 +55,11 @@ var cg = {
      cg.player = new Player()
      cg.circles = []
      cg.hideCursor()
-     if(cg.config.touchmove)
+     if(cg.config.touchmove){
+       $(document).bind('touchstart', cg.touchStart)
+       //$(document).bind('touchend', cg.touchend)
        $(document).bind('touchmove', cg.touchMove)
+     }
      else
        $(cg.canvas).mousemove(cg.mouseMove)
      $(window).blur(function() {
@@ -201,20 +204,34 @@ var cg = {
      cg.dispText()
 
    },
+   touchStart: function(e) {
+     e.preventDefault()
+     //var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]
+     cg.lastClientX = e.changedTouches[0].clientX;
+     cg.lastClientY = e.changedTouches[0].clientY;
+   },
    touchMove: function(e) {
      e.preventDefault()
      var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]
      cg.mouseMove(touch)
    },
+   lastClientX: 0,
+   lastClientY: 0,
    mouseMove: function(e) {
       if(!cg.paused) {
-        cg.player.x = e.clientX
+        
         if(cg.config.touchmove){
-          cg.player.y = e.clientY - 200
+
+
+
+          cg.player.x = cg.player.x + (e.clientX - cg.lastClientX)
+          cg.player.y = cg.player.y + (e.clientY - cg.lastClientY - 200)
         }
         else{
+          cg.player.x = e.clientX
           cg.player.y = e.clientY
         }
+
       }
    },
    dispText: function() {
