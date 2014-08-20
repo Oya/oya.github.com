@@ -210,7 +210,7 @@ var cg = {
       if(!cg.paused) {
         cg.player.x = e.clientX
         if(cg.config.touchmove){
-          cg.player.y = e.clientY - (cg.player.radius *2)
+          cg.player.y = e.clientY - (cg.player.radius *4)
         }
         else{
           cg.player.y = e.clientY
