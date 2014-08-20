@@ -56,7 +56,7 @@ var cg = {
      cg.circles = []
      cg.hideCursor()
      if(cg.config.touchmove){
-       $(document).bind('touchstart', cg.touchStart)
+       //$(document).bind('touchstart', cg.touchStart)
        //$(document).bind('touchend', cg.touchend)
        $(document).bind('touchmove', cg.touchMove)
      }
@@ -172,6 +172,7 @@ var cg = {
        cg.config.height = window.innerHeight
        $(cg.canvas).attr({width: cg.config.width, height: cg.config.height})
      }
+
    },
    tick: function() {
     now = (new Date()).getTime()
@@ -204,28 +205,17 @@ var cg = {
      cg.dispText()
 
    },
-   touchStart: function(e) {
-     e.preventDefault()
-     //var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]
-     cg.lastClientX = e.changedTouches[0].clientX;
-     cg.lastClientY = e.changedTouches[0].clientY;
-   },
    touchMove: function(e) {
      e.preventDefault()
      var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]
      cg.mouseMove(touch)
    },
-   lastClientX: 0,
-   lastClientY: 0,
    mouseMove: function(e) {
       if(!cg.paused) {
         
         if(cg.config.touchmove){
-
-
-
-          cg.player.x = cg.player.x + (e.clientX - cg.lastClientX)
-          cg.player.y = cg.player.y + (e.clientY - cg.lastClientY - 200)
+          cg.player.x = e.clientX
+          cg.player.y = e.clientY - 200
         }
         else{
           cg.player.x = e.clientX
