@@ -202,9 +202,14 @@ var cg = {
 
    },
    touchMove: function(e) {
+    // TODO deslocar a bola um pouco pra cima
      e.preventDefault()
      var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]
-     cg.mouseMove(touch)
+     //cg.mouseMove(touch)
+     if(!cg.paused) {
+       cg.player.x = e.clientX
+       cg.player.y = e.clientY - (cg.player.radius *2)
+     }
    },
    mouseMove: function(e) {
      if(!cg.paused) {
