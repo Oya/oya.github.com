@@ -12,7 +12,7 @@ Table of Contents:
 - Separator-Video
 - Fun Facts
 - Separator-Quotes
-- Services
+- plataform
 - Separator-Call to Action
 - Portfolio
 - Testimonials
@@ -41,7 +41,8 @@ Table of Contents:
 
 /*---- Fonts ----*/
 @import "../fonts/montserrat/stylesheet.css";
-@import "../fonts/raleway/stylesheet.css";  
+@import "../fonts/raleway/stylesheet.css"; 
+@import url('https://fonts.googleapis.com/css?family=Special+Elite'); 
 @import "simple-line-icons.css";
 @import "ionicons.min.css";
 @import "font-awesome.min.css";
@@ -566,10 +567,12 @@ h2 small {
 	vertical-align: middle;
 	z-index: 1;	
 }
-
+.brand{
+    font-family: 'Special Elite', sans-serif;
+}
 /*---- Header ----*/
 #header .navbar.navbar-default.navbar-fixed-top .container .navbar-header .navbar-brand {
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Special Elite', sans-serif;
 }
 .bottom-header,
 .home-top-header {
@@ -598,9 +601,11 @@ h2 small {
     top: -70px;
 }
 .navbar-brand {
+    font-family: 'Special Elite', sans-serif;
 	float: left; 
-    margin-top: 4px;
-	padding: 10px;  
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 53px; 
 }
 .navbar-default .navbar-brand h3{
 	letter-spacing: -2px;
@@ -1289,8 +1294,8 @@ line-height: 0px;
 	margin-top: 2px;
 }
 
-/*---- Services ----*/
-#services {
+/*---- plataform ----*/
+#plataform {
 	padding-top: 70px;
 	padding-bottom: 75px;
 }
@@ -1298,13 +1303,13 @@ line-height: 0px;
 	text-align: center;
 	margin-bottom: 40px;
 }
-.services-row {
+.plataform-row {
 	
 }
-.services-container {
+.plataform-container {
 	
 }
-.service {
+.plataform {
 	margin-bottom: 40px;
 }
 .service-icon {
@@ -2427,6 +2432,7 @@ ul.caret-list li:before {
 .panel-group .panel-heading + .panel-collapse .panel-body {
     border-top: none;
 }
+
 .nav-tabs > li > a:hover {
     border: none;
     border-color: none;
